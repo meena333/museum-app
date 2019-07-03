@@ -1,0 +1,16 @@
+h1 {
+    margin: 5rem 1rem;
+}
+
+img {
+    width: 40%;
+    min-width: 15rem;
+}
+body {
+    margin: 0;
+    padding: 2rem 0;
+    width: 100%;
+    background: lightcyan;
+    font-family: 'Sniglet', cursive;
+    text-align: center;
+}
