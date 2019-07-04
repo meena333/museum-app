@@ -330,7 +330,7 @@ const data = {
   for (let index=0; index<paintings.length; index++) {
 
     const currentPainting = paintings[index];
-    console.log(currentPainting);
+  //  console.log(currentPainting);
     displayPainting(currentPainting);
     
   } 
@@ -338,22 +338,39 @@ const data = {
    //display elements
    function displayPainting(currentPainting) {
     
-    //gather data
-    const gallery = document.getElementById("gallery");
-    const link = "./pages/detail-page.html";
+     //check if Artist is not Honthorst
+     const artist = currentPainting.principalOrFirstMaker;     
+
+    //check if the width > 2000 
+    if ((currentPainting.webImage.width > 2000) && (artist.includes("Honthorst") === false)) {
+
+        //check if the year in the longTitle is less than 1800. Extract words and get the last word
+        //since the last word has the year.
+        var words = currentPainting.longTitle.split(' ');
+        //console.log(words[words.length-1]);
+
+        if ((words[words.length-1]) < 1800 ) {
+            //console.log ("yes");
+             //gather data
+             const gallery = document.getElementById("gallery");
+             const link = "./pages/detail-page.html";
+             
+             //create Elements
+             const img = document.createElement("img");
+             const a = document.createElement("a");
+         
+             //adjust elements
+             img.alt = currentPainting.title;
+             img.src = currentPainting.webImage.url;
+         
+             a.href = link;   
+             a.appendChild(img);
+             gallery.appendChild(a);  
+        }    
+            
+        }
     
-    //create Elements
-    const img = document.createElement("img");
-    const a = document.createElement("a");
 
-    //adjust elements
-    img.alt = currentPainting.title;
-    img.src = currentPainting.webImage.url;
-
-    a.href = link;   
-    a.appendChild(img);
-    gallery.appendChild(a);  
-      
 }
 
 
